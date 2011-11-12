@@ -1,0 +1,19 @@
+{
+    "name": "grahamc/php-serial-event",
+    "type": "library",
+    "description": "Interact with a serial port via an event-based interface.",
+    "keywords": ["serial", "arduino", "event"],
+    "homepage": "http://github.com/grahamc/php-serial-event",
+    "license" "MIT",
+    "authors": [
+        {
+            "name": "Graham Christensen",
+            "email": "graham@grahamc.com",
+            "homepage": "http://grahamc.com/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+    }
+}
+

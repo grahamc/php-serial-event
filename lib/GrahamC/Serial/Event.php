@@ -1,12 +1,13 @@
 <?php
+namespace GrahamC\Serial;
 
-class PHPSerial_Event
+class Event
 {
     protected $serial;
     protected $events;
     protected $prefixes;
 
-    public function __construct(phpSerial $serial)
+    public function __construct(Device $serial)
     {
         $this->serial = $serial;
     }

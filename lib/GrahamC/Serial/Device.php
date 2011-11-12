@@ -1,4 +1,6 @@
 <?php
+namespace GrahamC\Serial;
+
 define ("SERIAL_DEVICE_NOTSET", 0);
 define ("SERIAL_DEVICE_SET", 1);
 define ("SERIAL_DEVICE_OPENED", 2);
@@ -17,7 +19,7 @@ define ("SERIAL_DEVICE_OPENED", 2);
  * @thanks Alec Avedisyan for help and testing with reading
  * @copyright under GPL 2 licence
  */
-class phpSerial
+class Device
 {
     var $_device = null;
     var $_windevice = null;
