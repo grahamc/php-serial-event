@@ -45,7 +45,7 @@ $p->registerPrefix('START',
 $p->registerPrefix('CARD:',
     function($end, $message) {
         $rand = rand(0, 10);
-        echo "Recieved card: $end: $rand\n";
+        echo "Received card: $end: $rand\n";
         return $rand;
     }
 );
