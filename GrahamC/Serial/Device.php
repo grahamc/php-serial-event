@@ -40,7 +40,7 @@ class Device
      *
      * @return phpSerial
      */
-    function phpSerial ()
+    function __construct ()
     {
         setlocale(LC_ALL, "en_US");
 
