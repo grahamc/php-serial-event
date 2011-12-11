@@ -8,13 +8,20 @@ require_once __DIR__ . '/../GrahamC/Serial/Device/Mock.php';
 use GrahamC\Serial\Event as Event;
 use GrahamC\Serial\Device\Mock as Mock;
 
-$p = new Mock();
-$dev = '/dev/tty.usbserial-A400829n';
-$dev = '/dev/cu.usbserial-A400829n';
-$p->deviceSet($dev);
-$p->confBaudRate(9600);
 
-$p = new Event($p);
+$messages = array('START');
+
+
+$device = new Mock(
+        function() use(&$messages)
+        {
+            return array_pop($messages);
+        },
+        null);
+
+$device->deviceSet('example');
+
+$p = new Event($device);
 
 $p->connect('connect.attempt',
     function($attempt) {
@@ -41,13 +48,16 @@ $p->connect('connect.abort',
 );
 
 $p->registerPrefix('START',
-    function($end, $message) {
+    function($end, $message) use (&$messages) {
         echo "Received start.\n";
+        $messages[] = 'CARD:123';
     }
 );
 
 $p->registerPrefix('CARD:',
-    function($end, $message) {
+    function($end, $message) use (&$messages) {
+        $messages[] = 'CARD:' . uniqid();
+
         $rand = rand(0, 10);
         echo "Received card: $end: $rand\n";
         return $rand;
