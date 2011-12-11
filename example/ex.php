@@ -1,10 +1,14 @@
 <?php
-namespace GrahamC\Serial;
 
-require_once 'lib/phpSerial.php';
-require_once 'lib/PHPSerial_Event.php';
+require_once __DIR__ . '/../GrahamC/Serial/Device.php';
+require_once __DIR__ . '/../GrahamC/Serial/Event.php';
+require_once __DIR__ . '/../GrahamC/Serial/Device/Physical.php';
+require_once __DIR__ . '/../GrahamC/Serial/Device/Mock.php';
 
-$p = new Device();
+use GrahamC\Serial\Event as Event;
+use GrahamC\Serial\Device\Mock as Mock;
+
+$p = new Mock();
 $dev = '/dev/tty.usbserial-A400829n';
 $dev = '/dev/cu.usbserial-A400829n';
 $p->deviceSet($dev);
