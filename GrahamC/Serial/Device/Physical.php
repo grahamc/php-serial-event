@@ -1,7 +1,7 @@
 <?php
 namespace GrahamC\Serial\Device;
 
-use Grahamc\Serial\Device as Device;
+use GrahamC\Serial\Device as Device;
 
 class Physical implements Device
 {
