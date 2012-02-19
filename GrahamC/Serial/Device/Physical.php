@@ -3,6 +3,10 @@ namespace GrahamC\Serial\Device;
 
 use GrahamC\Serial\Device as Device;
 
+define('SERIAL_DEVICE_NOTSET', 'notset');
+define('SERIAL_DEVICE_OPENED', 'opened');
+define('SERIAL_DEVICE_SET', 'set');
+
 class Physical implements Device
 {
     var $_device = null;
