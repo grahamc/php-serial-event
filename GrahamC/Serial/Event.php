@@ -41,21 +41,26 @@ class Event
         while (true) {
             $read = $this->serial->readPort();
             if ($read) {
-                $msg = trim($read);
+                $read = trim($read);
+                $msgs = explode("\n", $read);
 
-                foreach ($this->prefixes as $prefix) {
-                    $matchSection = substr($msg, 0, strlen($prefix));
-                    if ($matchSection == $prefix) {
-                        $endSection = substr($msg, strlen($prefix));
+                foreach ($msgs as $msg) {
+                    $msg = trim($msg);
 
-                        $results = $this->emit('message.received.prefix.' . $prefix, $endSection, $msg);
+                    foreach ($this->prefixes as $prefix) {
+                        $matchSection = substr($msg, 0, strlen($prefix));
+                        if ($matchSection == $prefix) {
+                            $endSection = substr($msg, strlen($prefix));
 
-                        foreach ($results as $result) {
-                            if ($result !== false && !is_null($result)) {
-                                $this->serial->sendMessage($result);
+                            $results = $this->emit('message.received.prefix.' . $prefix, $endSection, $msg);
+
+                            foreach ($results as $result) {
+                                if ($result !== false && !is_null($result)) {
+                                    $this->serial->sendMessage($result);
+                                }
                             }
+                            continue 2;
                         }
-                        continue 2;
                     }
                 }
             } else {
