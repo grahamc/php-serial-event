@@ -455,7 +455,7 @@ class Physical implements Device
             return false;
         }
 
-        if ($this->_os === "linux" || $this->_os === "osx")
+        if ($this->_os === "linux" || $this->_os === "osx" || $this->_os === "windows")
             {
             // Behavior in OSX isn't to wait for new data to recover, but just grabs what's there!
             // Doesn't always work perfectly for me in OSX
@@ -477,12 +477,7 @@ class Physical implements Device
 
             return $content;
         }
-        elseif ($this->_os === "windows")
-        {
-            /* Do nothing : not implented yet */
-        }
 
-        trigger_error("Reading serial port is not implemented for Windows", E_USER_WARNING);
         return false;
     }
 
@@ -564,4 +559,4 @@ class Physical implements Device
     // INTERNAL TOOLKIT -- {STOP}
     //
 }
-?>
+
